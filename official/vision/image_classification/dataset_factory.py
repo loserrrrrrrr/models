@@ -129,6 +129,7 @@ class DatasetConfig(base_config.Config):
   tf_data_service: Optional[str] = None
   mean_subtract: bool = False
   standardize: bool = False
+  download_dir: str = '/tensorflow-datasets/downloads'  #add download directory
 
   @property
   def has_data(self):
@@ -343,7 +344,7 @@ class DatasetBuilder:
     builder = tfds.builder(self.config.name, data_dir=self.config.data_dir)
 
     if self.config.download:
-      builder.download_and_prepare()
+      builder.download_and_prepare(download_dir=self.config.download_dir)
 
     decoders = {}
 
