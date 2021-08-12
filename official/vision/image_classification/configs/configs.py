@@ -164,7 +164,7 @@ def get_config(model: str, dataset: str) -> base_configs.ExperimentConfig:
       'imagenet': {
           'efficientnet': EfficientNetImageNetConfig(),
           'resnet': ResNetImagenetConfig(),
-      }
+      },
       'cifar10': {
           'efficientnet': EfficientNetCifar10Config(),
           'resnet': ResNetCifar10Config(),
