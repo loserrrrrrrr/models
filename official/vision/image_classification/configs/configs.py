@@ -91,6 +91,40 @@ class ResNetImagenetConfig(base_configs.ExperimentConfig):
       epochs_between_evals=1, steps=None)
   model: base_configs.ModelConfig = resnet_config.ResNetModelConfig()
 
+ 
+class EfficientNetCifar10Config(base_configs.ExperimentConfig):
+  """Base configuration to train efficientnet-b0 on ImageNet.
+
+  Attributes:
+    export: An `ExportConfig` instance
+    runtime: A `RuntimeConfig` instance.
+    dataset: A `DatasetConfig` instance.
+    train: A `TrainConfig` instance.
+    evaluation: An `EvalConfig` instance.
+    model: A `ModelConfig` instance.
+  """
+  export: base_configs.ExportConfig = base_configs.ExportConfig()
+  runtime: base_configs.RuntimeConfig = base_configs.RuntimeConfig()
+  train_dataset: dataset_factory.DatasetConfig = \
+      dataset_factory.Cifar10Config(split='train')
+  validation_dataset: dataset_factory.DatasetConfig = \
+      dataset_factory.Cifar10Config(split='validation')
+  train: base_configs.TrainConfig = base_configs.TrainConfig(
+      resume_checkpoint=True,
+      epochs=100,
+      steps=None,
+      callbacks=base_configs.CallbacksConfig(
+          enable_checkpoint_and_export=True, enable_tensorboard=True),
+      metrics=['accuracy', 'top_5'],
+      time_history=base_configs.TimeHistoryConfig(log_steps=100),
+      tensorboard=base_configs.TensorboardConfig(
+          track_lr=True, write_model_weights=False),
+      set_epoch_loop=False)
+  evaluation: base_configs.EvalConfig = base_configs.EvalConfig(
+      epochs_between_evals=1, steps=None)
+  model: base_configs.ModelConfig = \
+    efficientnet_config.EfficientNetModelConfig()
+    
     
 @dataclasses.dataclass
 class ResNetCifar10Config(base_configs.ExperimentConfig):
@@ -130,6 +164,10 @@ def get_config(model: str, dataset: str) -> base_configs.ExperimentConfig:
       'imagenet': {
           'efficientnet': EfficientNetImageNetConfig(),
           'resnet': ResNetImagenetConfig(),
+      }
+      'cifar10': {
+          'efficientnet': EfficientNetCifar10Config(),
+          'resnet': ResNetCifar10Config(),
       }
   }
   try:
