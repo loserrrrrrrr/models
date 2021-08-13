@@ -19,7 +19,7 @@ validation_dataset:
   name: 'cifar10'
   data_dir: null
   builder: 'tfds'
-  split: 'validation'
+  split: 'test'
   image_size: 32
   num_classes: 10
   num_examples: 10000
