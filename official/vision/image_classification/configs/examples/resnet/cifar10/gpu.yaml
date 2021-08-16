@@ -7,6 +7,7 @@ train_dataset:
   data_dir: null
   builder: 'records'
   split: 'train'
+  path: 'cifar10-train'
   image_size: 32
   num_classes: 10
   num_examples: 50000
@@ -20,6 +21,7 @@ validation_dataset:
   data_dir: null
   builder: 'records'
   split: 'test'
+  path: 'cifar10-test'
   image_size: 32
   num_classes: 10
   num_examples: 10000
