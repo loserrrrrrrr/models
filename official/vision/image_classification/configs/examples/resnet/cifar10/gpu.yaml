@@ -5,7 +5,7 @@ runtime:
 train_dataset:
   name: 'cifar10'
   data_dir: null
-  builder: 'tfds'
+  builder: 'records'
   split: 'train'
   image_size: 32
   num_classes: 10
@@ -18,7 +18,7 @@ train_dataset:
 validation_dataset:
   name: 'cifar10'
   data_dir: null
-  builder: 'tfds'
+  builder: 'records'
   split: 'test'
   image_size: 32
   num_classes: 10
