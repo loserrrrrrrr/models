@@ -310,13 +310,11 @@ def resnet50(num_classes,
 
   x = layers.GlobalAveragePooling2D()(x)
   x = layers.Dense(
-      num_classes,
-      kernel_initializer=tf.compat.v1.keras.initializers.random_normal(
-          stddev=0.01),
+      num_classes=10,
+      kernel_initializer=tf.compat.v1.keras.initializers.random_normal(stddev=0.01),
       kernel_regularizer=_gen_l2_regularizer(use_l2_regularizer),
       bias_regularizer=_gen_l2_regularizer(use_l2_regularizer),
-      name='fc1000')(
-          x)
+      name='fc1000')(x)
 
   # A softmax that is followed by the model loss must be done cannot be done
   # in float16 due to numeric issues. So we pass dtype=float32.
