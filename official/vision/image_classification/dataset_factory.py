@@ -111,6 +111,7 @@ class DatasetConfig(base_config.Config):
   filenames: Optional[List[str]] = None
   builder: str = 'tfds'
   split: str = 'train'
+  path: str = None
   image_size: Union[int, str] = 'infer'
   num_classes: Union[int, str] = 'infer'
   num_channels: Union[int, str] = 'infer'
