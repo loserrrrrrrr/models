@@ -5,9 +5,9 @@ runtime:
 train_dataset:
   name: 'cifar10'
   data_dir: null
-  builder: 'cifar10/3.0.2/records'
+  builder: 'records'
   split: 'train'
-  path: 'cifar10-train'
+  path: 'cifar10/3.0.2/cifar10-train'
   image_size: 32
   num_classes: 10
   num_examples: 50000
